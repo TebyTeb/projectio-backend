@@ -25,7 +25,7 @@ const morgan = require('morgan') // Logger
       .use(cors())
       .use(morgan('combined')) // Show log for every request in "combined" format.
       .use(express.json()) // Parses .json format into js objects
-      .use('/api', require('./api/routes')) // If we get a petition with "/api..." in it, it will call "./api/routes" and execute index.js
+      .use('/api', require('./api/routes/router')) // If we get a petition with "/api..." in it, it will call "./api/routes" and execute index.js
 
     // Init server
     const PORT = process.env.PORT || 2222
