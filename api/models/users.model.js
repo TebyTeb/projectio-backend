@@ -5,6 +5,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Name is required']
   },
+  surname: {
+    type: String,
+    required: [true, 'Surname is required']
+  },
   email: {
     type: String,
     required: [true, 'Email is required'],
@@ -13,21 +17,15 @@ const userSchema = new mongoose.Schema({
         return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value)
       }
     },
-    unique: [true, 'This is email is registered']
+    unique: [true, 'Este correo electrónico ya está registrado']
   },
   password: {
     type: String,
     required: true
   },
-  role: {
-    type: String,
-    enum: ['host', 'regular'],
-    required: false,
-    default: 'regular'
-  },
   birthDate: {
     type: Date,
-    required: false
+    required: true
   },
   createdAt: {
     type: Number,
