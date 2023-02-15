@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
 
 const sprintSchema = new mongoose.Schema({
-  title: {},
+  title: {
+    type: String,
+    required: [true, 'Please enter a title']
+  },
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'project',
