@@ -3,7 +3,7 @@ require('dotenv').config()
 
 const express = require('express') // Brings Express Router framework
 
-const cors = require('cors') // Manages cross-origin requests
+const cors = require('cors') // Manages cross-origin requests  ---INVESTIGAR BIEN---
 const mongoose = require('mongoose') // Allows petitions to database
 const morgan = require('morgan') // Logger
 

@@ -16,7 +16,8 @@ const projectSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: false
+    required: false,
+    default: 'Add a description'
   },
   created: {
     type: Date,
