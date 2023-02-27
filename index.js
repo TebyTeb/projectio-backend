@@ -3,7 +3,7 @@ require('dotenv').config()
 
 const express = require('express') // Brings Express Router framework
 
-const cors = require('cors') // Manages cross-origin requests
+const cors = require('cors') // Manages cross-origin requests  ---INVESTIGAR BIEN---
 const mongoose = require('mongoose') // Allows petitions to database
 const morgan = require('morgan') // Logger
 
@@ -25,7 +25,7 @@ const morgan = require('morgan') // Logger
       .use(cors())
       .use(morgan('combined')) // Show log for every request in "combined" format.
       .use(express.json()) // Parses .json format into js objects
-      .use('/api', require('./api/routes')) // If we get a petition with "/api..." in it, it will call "./api/routes" and execute index.js
+      .use('/api', require('./api/routes/router')) // If we get a petition with "/api..." in it, it will call "./api/routes" and execute router.js
 
     // Init server
     const PORT = process.env.PORT || 2222
