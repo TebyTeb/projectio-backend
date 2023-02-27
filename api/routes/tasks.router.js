@@ -8,10 +8,10 @@ const {
   deleteTaskById
 } = require('../controllers/tasks.controller')
 
-// router.get('/', getSprintTasks)
-// router.get('/:id', getTaskById)
-// router.post('/', createTask)
-// router.put('/:id', updateTask)
-// router.delete('/:id', deleteTaskById)
+router.get('/', getSprintTasks)
+router.get('/:id', getTaskById)
+router.post('/', createTask)
+router.put('/:id', updateTask)
+router.delete('/:id', deleteTaskById)
 
 module.exports = router
