@@ -4,8 +4,8 @@ module.exports = {
   getUserProjects,
   getProjectById,
   createProject,
-  deleteProjectById,
-  updateProject
+  updateProject,
+  deleteProjectById
 }
 
 function getUserProjects (req, res) {
@@ -38,24 +38,6 @@ function createProject (req, res) {
     .catch((err) => res.status(400).json(err))
 }
 
-async function deleteProjectById (req, res) {
-  const userId = res.locals.user._id
-
-  try {
-    const project = await ProjectModel.findById(req.params.id)
-
-    if (project === null) throw new Error('The project doesn\'t exist')
-
-    if (project.owner.equals(userId)) {
-      await ProjectModel.findByIdAndDelete(req.params.id)
-      return res.status(200).json('success')
-    } else throw new Error('Forbidden action')
-  } catch (err) {
-    console.error(err)
-    res.status(403).json(`Error: ${err.message}`)
-  }
-}
-
 // Async-Await format. Refactor functions?
 async function updateProject (req, res) {
   const userId = res.locals.user._id
@@ -71,6 +53,24 @@ async function updateProject (req, res) {
         runValidators: true
       })
       return res.status(200).json(updatedProject)
+    } else throw new Error('Forbidden action')
+  } catch (err) {
+    console.error(err)
+    res.status(403).json(`Error: ${err.message}`)
+  }
+}
+
+async function deleteProjectById (req, res) {
+  const userId = res.locals.user._id
+
+  try {
+    const project = await ProjectModel.findById(req.params.id)
+
+    if (project === null) throw new Error('The project doesn\'t exist')
+
+    if (project.owner.equals(userId)) {
+      await ProjectModel.findByIdAndDelete(req.params.id)
+      return res.status(200).json('success')
     } else throw new Error('Forbidden action')
   } catch (err) {
     console.error(err)
