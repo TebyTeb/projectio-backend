@@ -8,6 +8,11 @@ module.exports = {
   deleteTaskById
 }
 
+// Auxiliary
+// Get project From X
+// Check ownership / collaborator
+
+// Endpoints
 function getSprintTasks (req, res) {
   TaskModel
     .find()

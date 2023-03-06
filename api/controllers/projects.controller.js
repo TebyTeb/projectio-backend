@@ -8,6 +8,10 @@ module.exports = {
   deleteProjectById
 }
 
+// Auxiliary
+// Check ownership / collaborator
+
+// Endpoints
 function getUserProjects (req, res) {
   const userId = res.locals.user._id
 

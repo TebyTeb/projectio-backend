@@ -8,6 +8,11 @@ module.exports = {
   deleteListById
 }
 
+// Auxiliary
+// Get project From X
+// Check ownership / collaborator
+
+// Endpoints
 function getProjectLists (req, res) {
   ListModel
     .find()
