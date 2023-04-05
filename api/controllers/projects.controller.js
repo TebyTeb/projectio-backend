@@ -19,6 +19,7 @@ function getUserProjects (req, res) {
     .find()
     .where('owner')
     .equals(userId)
+    .populate('owner')
 
     .then(response => res.status(200).json(response))
     .catch((err) => res.status(400).json(err))
