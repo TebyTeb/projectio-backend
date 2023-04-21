@@ -1,14 +1,14 @@
 const router = require('express').Router()
 
 const {
-  getSprintTasks,
+  getTasks,
   getTaskById,
   createTask,
   updateTask,
   deleteTaskById
 } = require('../controllers/tasks.controller')
 
-router.get('/', getSprintTasks)
+router.get('/', getTasks)
 router.get('/:id', getTaskById)
 router.post('/', createTask)
 router.put('/:id', updateTask)
