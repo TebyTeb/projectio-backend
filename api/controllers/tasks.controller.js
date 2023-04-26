@@ -1,3 +1,4 @@
+const listModel = require('../models/lists.model')
 const TaskModel = require('../models/tasks.model')
 
 module.exports = {
@@ -22,6 +23,7 @@ function getTasks (req, res) {
     query.sprintId = req.query.sprint
   }
   TaskModel.find(query)
+    .populate('sprintId')
 
     .then((response) => res.status(200).json(response))
     .catch((err) => res.status(400).json(err))
@@ -34,11 +36,32 @@ function getTaskById (req, res) {
     .catch((err) => res.status(400).json(err))
 }
 
-function createTask (req, res) {
-  TaskModel.create(req.body)
+// function createTask (req, res) {
+//   TaskModel.create(req.body)
 
-    .then((response) => res.status(200).json(response))
-    .catch((err) => res.status(400).json(err))
+//     .then((response) => res.status(200).json(response))
+//     .catch((err) => res.status(400).json(err))
+// }
+
+async function createTask (req, res) {
+  try {
+    const assignedProject = req.body.projectId
+    const projectLists = await listModel.find()
+      .where('projectId')
+      .equals(assignedProject)
+    const [todoList] = projectLists.filter((list) => list.name === 'To do')
+    console.log(todoList)
+    const newTask = {
+      ...req.body,
+      listId: todoList._id,
+      assigned: res.locals.user._id
+    }
+    const createdTask = await TaskModel.create(newTask)
+    return res.status(200).json(createdTask)
+  } catch (err) {
+    console.error(err)
+    res.status(403).json(`Error: ${err.message}`)
+  }
 }
 
 async function updateTask (req, res) {
