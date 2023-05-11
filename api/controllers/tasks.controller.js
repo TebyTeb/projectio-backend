@@ -53,7 +53,7 @@ async function createTask (req, res) {
     console.log(todoList)
     const newTask = {
       ...req.body,
-      listId: todoList._id,
+      listId: req.body.listId ? req.body.listId : todoList._id,
       assigned: res.locals.user._id
     }
     const createdTask = await TaskModel.create(newTask)

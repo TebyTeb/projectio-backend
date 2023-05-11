@@ -23,7 +23,7 @@ const morgan = require('morgan') // Logger
     // ADDING MIDDLEWARES & ROUTER
     const app = express()
       .use(cors())
-      .use(morgan('combined')) // Show log for every request in "combined" format.
+      .use(morgan('dev')) // Show log for every request in "combined" format.
       .use(express.json()) // Parses .json format into js objects
       .use('/api', require('./api/routes/router')) // If we get a petition with "/api..." in it, it will call "./api/routes" and execute router.js
 
